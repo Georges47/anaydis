@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+<meta name="author" content="Georges Stefan" />
+
+
+<title>Análisis y Diseño de Algoritmos</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+<link href="site_libs/magnific-popup-1.1.0/magnific-popup.css" rel="stylesheet" />
+<script src="site_libs/magnific-popup-1.1.0/jquery.magnific-popup.min.js"></script>
+<link href="site_libs/readthedown-0.1/readthedown.css" rel="stylesheet" />
+<script src="site_libs/readthedown-0.1/readthedown.js"></script>
+
+
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+
+</head>
+
+<body>
+
+
+<div id="content" data-toggle="wy-nav-shift">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("text-table-of-contents");
+});
+</script>
+
+<!-- code folding -->
+
+<nav id="nav-top" role="navigation" aria-label="top navigation">
+    <a role="button" href="#" data-toggle="wy-nav-top"><span class="glyphicon glyphicon-menu-hamburger"></span></a>
+</nav>
+
+
+<div id="header">
+<h1 class="title">Análisis y Diseño de Algoritmos</h1>
+</div>
+
+
+<div id="sidebar">
+    <h2><a href="#content">Análisis y Diseño de Algoritmos</a></h2>
+    <div id="table-of-contents">
+      <ul>
+      <li><a href="#sorting">Sorting</a><ul>
+      <li><a href="#algoritmos-elementales">Algoritmos elementales</a><ul>
+      <li><a href="#selection-sort">Selection Sort</a></li>
+      <li><a href="#insertion-sort">Insertion Sort</a></li>
+      <li><a href="#bubble-sort">Bubble Sort</a></li>
+      </ul></li>
+      <li><a href="#análisis-de-algoritmos-elementales">Análisis de algoritmos elementales</a><ul>
+      <li><a href="#tiempo-de-ejecución">Tiempo de ejecución</a><ul>
+      <li><a href="#mejor-caso">Mejor caso</a></li>
+      <li><a href="#peor-caso">Peor caso</a></li>
+      <li><a href="#caso-promedio">Caso promedio</a></li>
+      </ul></li>
+      <li><a href="#section"></a></li>
+      <li><a href="#orden">Orden</a><ul>
+      <li><a href="#mejor-caso-1">Mejor caso</a></li>
+      <li><a href="#peor-caso-1">Peor caso</a></li>
+      <li><a href="#caso-promedio-1">Caso promedio</a></li>
+      </ul></li>
+      <li><a href="#section-1"></a></li>
+      </ul></li>
+      </ul></li>
+      </ul>
+    </div>
+    
+    <div id="postamble" data-toggle="wy-nav-shift" class="status">
+              <p class="author"><span class="glyphicon glyphicon-user"></span> Georges Stefan</p>
+                  <p class="date"><span class="glyphicon glyphicon-calendar"></span> 09 septiembre 2020</p>
+        </div>
+</div>
+
+<div id="main">
+<style>
+body {
+text-align: justify}
+</style>
+<div id="sorting" class="section level1">
+<h1>Sorting</h1>
+<!-- escribir algo sobre el sorting en si y luego podria hablar un poquito de time complexity -->
+<p>Hay dos propiedades que vamos a considerar en estos algoritmos: estabilidad y adaptatividad.</p>
+<p>Un algoritmo de sorting es estable si dos elementos iguales aparecen en el mismo orden en la salida ordenada tal como aparecen en la lista de entrada antes de que se va a ordenar, siendo no estable o inestable si este orden se modifica. <!-- Any comparison based sorting algorithm which is not stable by nature can be modified to be stable by changing the key comparison operation so that the comparison of two keys considers position as a factor for objects with equal key or by tweaking it in a way such that its meaning doesn’t change and it becomes stable as well. --></p>
+<p>Un algoritmo de sorting es adaptativo si modifica su conducta (las operaciones que realiza) durante su ejecución, dependiendo del resultado de las comparaciones que hace. Mientras que es no adaptativo si la secuencia de operaciones que realiza es independiente del orden de los elementos.</p>
+<div id="algoritmos-elementales" class="section level2">
+<h2>Algoritmos elementales</h2>
+<p>Los algoritmos elementales de sorting son tres:</p>
+<ul>
+<li>Selection Sort</li>
+<li>Insertion Sort</li>
+<li>Bubble Sort</li>
+</ul>
+<p>Los tres algoritmos son de tiempo cuadrático, tanto en el peor caso como en el promedio, y son in-place (no requieren memoria adicional). Aún así el funcionamiento de cada uno es distinto, como se verá a continuación.</p>
+<div id="selection-sort" class="section level3">
+<h3>Selection Sort</h3>
+<p>El algoritmo recorre toda la lista para encontrar el elemento más pequeño, una vez que se encuentra se intercambia con el elemento en la primera posición. Luego se recorre la lista desde la segunda posición (ya que el elemento anterior está en su posición final) en búsqueda del segundo elemento más pequeño y una vez encontrado se intercambia con el elemento de la segunda posición. Se continua de este modo hasta que la lista esté ordenada.</p>
+<p>Se llama “<strong>Selection</strong>” porque opera seleccionando repetidamente el elemento restante más pequeño. Es bueno cuando se deben realizar pocos intercambios.</p>
+<p>Es <strong>inestable</strong>, ya que una vez que encuentra al elemento más pequeño de la parte desordenada, lo intercambia con el elemento que está en la posición correspondiente. Es <strong>no adaptativo</strong>, ya que realiza la misma cantidad de operaciones (y por lo tanto tarda el mismo tiempo) sin importar el orden de la lista inicial.</p>
+<script language="javascript"> 
+    function toggle(num) {
+      var ele = document.getElementById("toggleText" + num);
+      var text = document.getElementById("displayText" + num);
+      if(ele.style.display == "block") {
+        ele.style.display = "none";
+        text.innerHTML = "show";
+      }
+      else {
+        ele.style.display = "block";
+        text.innerHTML = "hide";
+      }
+   } 
+  </script>
+<a id="displayText" href="javascript:toggle(1);">Ejemplo de inestabilidad</a>
+<div id="toggleText1" style="display: none">
+<pre><code>Supongamos que tenemos la siguiente lista de enteros: 5 3 4 5 2 6
+
+Ahora distingamos los números iguales de la siguiente manera: 5(a) 3 4 5(b) 2 6
+
+Luego de la primera  iteración el 2 se intercambiará con el elemento en la primera posición, por lo 
+que la lista queda: 2 3 4 5(b) 5(a) 6
+
+Ahora la lista está ordenada pero como se puede ver antes de utilizar el algoritmo 5(a) estaba antes
+de 5(b), mientras que ahora 5(a) está despues de 5(b). Por lo tanto, el algoritmo no es estable.</code></pre>
+</div>
+</div>
+<div id="insertion-sort" class="section level3">
+<h3>Insertion Sort</h3>
+<p>El algoritmo considera un elemento a la vez, insertándolo en su lugar correspondiente entre aquellos elementos que han sido considerados previamente. Por lo tanto los elementos considerados van a estar ordenados pero no en sus posiciones finales, ya que puede que se tengan que mover al considerar un nuevo elemento.</p>
+<p>Es <strong>estable</strong>, ya que intercambia elementos solo si son mayores, no si son iguales. Es <strong>adaptativo</strong>, ya que entre más ordenada esté la lista inicial, menor será su tiempo de ejecución.</p>
+</div>
+<div id="bubble-sort" class="section level3">
+<h3>Bubble Sort</h3>
+<p>El algoritmo itera sobre la lista, intercambiando elementos adyacentes que no estén en orden, continuando de esta manera hasta que la lista esté ordenada. Por lo tanto por cada iteración la lista se va ordenando cada vez más.</p>
+<p>Es <strong>estable</strong>. ya que como el Insertion Sort, solo intercambia elementos si son mayores que el siguiente, no si son iguales. Es <strong>adaptativo</strong>, ya que entre más ordenada esté la lista inicial, menor será su tiempo de ejecución.</p>
+</div>
+</div>
+<div id="análisis-de-algoritmos-elementales" class="section level2">
+<h2>Análisis de algoritmos elementales</h2>
+<p>Para este análisis hay tres posibles casos que vamos a considerar:</p>
+<ul>
+<li><strong>Mejor caso</strong>: Cuando la lista ya está ordenada, en nuestro caso consideramos una lista ordenada cuando está ordenada de manera ascendente.</li>
+<li><strong>Peor caso</strong>: Cuando la lista está invertida, es decir, está ordenada de manera descendente.</li>
+<li><strong>Caso promedio</strong>: Cuando los elementos de la lista están ordenados de manera random.</li>
+</ul>
+<!-- En el eje horizontal se utilizó una escala logarítmica de base 10, con el objetivo de “magnificar” la parte inferior de la curva (los valores de 10 y 50). -->
+<div id="tiempo-de-ejecución" class="section level3 tabset unnumbered">
+<h3>Tiempo de ejecución</h3>
+<div id="mejor-caso" class="section level4 unnumbered unnumbered">
+<h4>Mejor caso</h4>
+<p><img src="best_time.png" /></p>
+<p>Teoricamente, en el mejor caso tanto Bubble Sort como Insertion Sort deberían tener un tiempo de ejecución lineal, mientras que el de Selection Sort sigue siendo cuadrático.</p>
+<p>Ahora bien, empíricamente, podemos ver en la gráfica como Insertion Sort y Bubble Sort se asemejan a una recta, mientras que la curva del Selection Sort asciende con mayor rapidez, como era de esperarse.</p>
+<!-- Selection Sort $\approx \frac{N^2}{2}$ comparaciones y $N-1$ intercambios. -->
+<!-- Insertion Sort $N-1$ comparaciones y 0 intercambios.  -->
+<!-- Bubble Sort $\approx \frac{N^2}{2}$ comparaciones y 0 intercambios. -->
+</div>
+<div id="peor-caso" class="section level4 unnumbered unnumbered">
+<h4>Peor caso</h4>
+<p><img src="worst_time.png" /></p>
+<p>Teoricamente, en el peor caso Selection Sort hace siempre la misma cantidad de comparaciones e intercambios, sin importar el orden inicial de la lista, por lo que su tiempo de ejecución sigue siendo cuadrático. Mientras que a diferencia del mejor caso, ahora tanto Insertion Sort como Bubble Sort pasan a tener un tiempo de ejecución cuadrático.</p>
+<p>En el gráfico podemos observar como Bubble Sort si parece expresar ese tiempo de ejecución cuadrático, aunque Selection Sort e Insertion Sort no, pareciendo más un tiempo lineal o muy levemente cuadrático.</p>
+<!-- Selection Sort $\approx \frac{N^2}{2}$ comparaciones y $N-1$ intercambios. -->
+<!-- Insertion Sort $\approx \frac{N^2}{2}$ comparaciones y $\frac{N^2}{2}$ intercambios.  -->
+<!-- Bubble Sort $\approx \frac{N^2}{2}$ comparaciones y $\approx \frac{N^2}{2}$ intercambios.  -->
+<!-- En el peor caso, cuando la lista está ordenada de manera inversa, se puede observar como en un principio el algoritmo de Selection es el más rápido. Bubble e Insertion actúan de forma semejante al inicio pero más adelante, a medida que crece n, Insertion es más veloz. -->
+</div>
+<div id="caso-promedio" class="section level4 unnumbered unnumbered">
+<h4>Caso promedio</h4>
+<p><img src="average_time.png" /></p>
+<p>Teoricamente, en el caso promedio los tres algoritmos también tienen un tiempo de ejecución cuadrático.</p>
+<p>En la gráfica se puede observar como sucede lo mismo que en el peor caso: el Bubble Sort si expresa ese tiempo cuadrático, mientras que Selection Sort e Insertion sort, no tanto. La diferencia es que los tiempos son menores al peor caso.</p>
+</div>
+</div>
+<div id="section" class="section level3 unnumbered">
+<h3></h3>
+<!-- Selection Sort $\approx \frac{N^2}{2}$ comparaciones y $N-1$ intercambios. -->
+<!-- Insertion Sort $\approx \frac{N^2}{4}$ comparaciones y $\frac{N^2}{4}$ intercambios.  -->
+<!-- Bubble Sort $\approx \frac{N^2}{2}$ comparaciones y $\approx \frac{N^2}{2}$ intercambios.  -->
+<hr />
+<p>En el peor caso y en el promedio, el tiempo de los algoritmos de Insertion y Selection es similar, mientras que el tiempo de ejecución de Bubble se eleva mucho más a medida que aumenta n. Esta última observación era de esperarse. Wesley (2002) “Bubble sort generally will be slower than the other two methods…” (p. 262).</p>
+</div>
+<div id="orden" class="section level3 tabset unnumbered">
+<h3>Orden</h3>
+<div id="mejor-caso-1" class="section level4 unnumbered unnumbered">
+<h4>Mejor caso</h4>
+<p>.</p>
+</div>
+<div id="peor-caso-1" class="section level4 unnumbered unnumbered">
+<h4>Peor caso</h4>
+<p>.</p>
+</div>
+<div id="caso-promedio-1" class="section level4 unnumbered unnumbered">
+<h4>Caso promedio</h4>
+<p>.</p>
+</div>
+</div>
+<div id="section-1" class="section level3 unnumbered">
+<h3></h3>
+<hr />
+<p>En el caso de tener que desarrollar un programa que utilice alguno de los algoritmos elementales para ordenar una lista de objetos del tipo:</p>
+<pre class="cpp"><code>public class FullName {
+    private String firstname;
+    private String lastname;
+  
+    public String getFirstname() {
+        return firstname;
+    }
+  
+    public String getLastname() {
+        return lastname;
+    }
+}</code></pre>
+<p>En el cual la lista debe ser ordenada dos veces, la primera por apellido y la segunda por nombre.</p>
+<p>Yo implementé un FullNameComparator el cual tiene una lógica con la que se puede ordenar una lista de FullNames de esta manera deseada, sorteandola solo una vez. Por lo tanto, elegí utilizar Insertion Sort, ya que su tiempo de ejecución es de los menores entre los tres algoritmos, como podemos ver en las gráficas anteriores.</p>
+</div>
+</div>
+</div>
+</div>
+
+
+</div>
+
+
+
+
+<script>
+$(document).ready(function () {
+ 	  });
+</script>
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
