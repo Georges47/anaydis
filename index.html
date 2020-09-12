@@ -79,13 +79,16 @@ $(document).ready(function () {
       </ul></li>
       <li><a href="#section-1"></a></li>
       </ul></li>
+      <li><a href="#shellsort">Shellsort</a></li>
+      <li><a href="#quicksort">Quicksort</a></li>
+      <li><a href="#mergesort">Mergesort</a></li>
       </ul></li>
       </ul>
     </div>
     
     <div id="postamble" data-toggle="wy-nav-shift" class="status">
               <p class="author"><span class="glyphicon glyphicon-user"></span> Georges Stefan</p>
-                  <p class="date"><span class="glyphicon glyphicon-calendar"></span> 09 septiembre 2020</p>
+                  <p class="date"><span class="glyphicon glyphicon-calendar"></span> 11 septiembre 2020</p>
         </div>
 </div>
 
@@ -115,30 +118,31 @@ text-align: justify}
 <p>Se llama “<strong>Selection</strong>” porque opera seleccionando repetidamente el elemento restante más pequeño. Es bueno cuando se deben realizar pocos intercambios.</p>
 <p>Es <strong>inestable</strong>, ya que una vez que encuentra al elemento más pequeño de la parte desordenada, lo intercambia con el elemento que está en la posición correspondiente. Es <strong>no adaptativo</strong>, ya que realiza la misma cantidad de operaciones (y por lo tanto tarda el mismo tiempo) sin importar el orden de la lista inicial.</p>
 <script language="javascript"> 
-    function toggle(num) {
-      var ele = document.getElementById("toggleText" + num);
-      var text = document.getElementById("displayText" + num);
-      if(ele.style.display == "block") {
-        ele.style.display = "none";
-        text.innerHTML = "show";
-      }
-      else {
-        ele.style.display = "block";
-        text.innerHTML = "hide";
-      }
-   } 
-  </script>
-<a id="displayText" href="javascript:toggle(1);">Ejemplo de inestabilidad</a>
+  function toggle(num) {
+    var ele = document.getElementById("toggleText" + num);
+    var text = document.getElementById("displayText" + num);
+    if(ele.style.display == "block") {
+      ele.style.display = "none";
+      text.innerHTML = "show";
+    }
+    else {
+      ele.style.display = "block";
+      text.innerHTML = "hide";
+    }
+ } 
+</script>
+<a id="displayText" href="javascript:toggle(1);">Ejemplo de inestabilidad<br><br></a>
 <div id="toggleText1" style="display: none">
-<pre><code>Supongamos que tenemos la siguiente lista de enteros: 5 3 4 5 2 6
-
-Ahora distingamos los números iguales de la siguiente manera: 5(a) 3 4 5(b) 2 6
-
-Luego de la primera  iteración el 2 se intercambiará con el elemento en la primera posición, por lo 
-que la lista queda: 2 3 4 5(b) 5(a) 6
-
-Ahora la lista está ordenada pero como se puede ver antes de utilizar el algoritmo 5(a) estaba antes
-de 5(b), mientras que ahora 5(a) está despues de 5(b). Por lo tanto, el algoritmo no es estable.</code></pre>
+<table style="width:100%">
+<tr>
+<td>
+<p>Supongamos que tenemos la siguiente lista de enteros: 5 3 4 5 2 6</p>
+<p>Ahora distingamos los números iguales de la siguiente manera: 5(a) 3 4 5(b) 2 6</p>
+<p>Luego de la primera iteración el 2 se intercambiará con el elemento en la primera posición, por lo que la lista queda: 2 3 4 5(b) 5(a) 6</p>
+<p>Ahora la lista está ordenada pero como se puede ver antes de utilizar el algoritmo 5(a) estaba antes de 5(b), mientras que ahora 5(a) está despues de 5(b). Por lo tanto, el algoritmo no es estable.</p>
+</td>
+</tr>
+</table>
 </div>
 </div>
 <div id="insertion-sort" class="section level3">
@@ -231,6 +235,76 @@ de 5(b), mientras que ahora 5(a) está despues de 5(b). Por lo tanto, el algorit
 <p>En el cual la lista debe ser ordenada dos veces, la primera por apellido y la segunda por nombre.</p>
 <p>Yo implementé un FullNameComparator el cual tiene una lógica con la que se puede ordenar una lista de FullNames de esta manera deseada, sorteandola solo una vez. Por lo tanto, elegí utilizar Insertion Sort, ya que su tiempo de ejecución es de los menores entre los tres algoritmos, como podemos ver en las gráficas anteriores.</p>
 </div>
+</div>
+<div id="shellsort" class="section level2">
+<h2>Shellsort</h2>
+<p>Una desventaja del algoritmo de Insertion sort es que solo puede intercambiar elementos adyacentes, por lo que los elementos solo pueden moverse una posición a la vez en la lista. Shellsort es una simple extensión de Insertion sort que permite intercambiar elementos no adyacentes, por lo que gana rapidez.</p>
+<p>Una lista h-sorted es simplemente <span class="math inline">\(h\)</span> listas ordenadas intercaladas entre sí. Es decir, empezando en cualquier elemento y agregando el elemento que está <span class="math inline">\(h\)</span> posiciones por delante, siguiendo así hasta llegar al final de la lista, se tiene una sublista ordenada.</p>
+<script language="javascript"> 
+  function toggle(num) {
+    var ele = document.getElementById("toggleText" + num);
+    var text = document.getElementById("displayText" + num);
+    if(ele.style.display == "block") {
+      ele.style.display = "none";
+      text.innerHTML = "show";
+    }
+    else {
+      ele.style.display = "block";
+      text.innerHTML = "hide";
+    }
+ } 
+</script>
+<a id="displayText" href="javascript:toggle(2);">Ejemplo de lista h-sorted<br><br></a>
+<div id="toggleText2" style="display: none">
+<table style="width:100%">
+<tr>
+<td>
+<p>Por ejemplo, la siguiente lista está h-sorted con h = 3.</p>
+<p><span class="math inline">\(479\hspace{0.45em} 1\hspace{0.45em} 26\hspace{0.45em} 752\hspace{0.45em} 4\hspace{0.45em} 56\hspace{0.45em} 981\hspace{0.45em} 7\hspace{0.45em} 83\)</span></p>
+<p>Ya que empezando en cualquier elemento y avanzando con un delta de 3, tendremos una sublista ordenada. A continuación se muestran las 3 sublistas ordenadas, cada una destacada con un color :</p>
+<p><span class="math inline">\(\color{red}{479\ }\)</span> <span class="math inline">\(\color{green}{1\ }\)</span> <span class="math inline">\(\color{blue}{26\ }\)</span> <span class="math inline">\(\color{red}{752\ }\)</span> <span class="math inline">\(\color{green}{4\ }\)</span> <span class="math inline">\(\color{blue}{56\ }\)</span> <span class="math inline">\(\color{red}{981\ }\)</span> <span class="math inline">\(\color{green}{7\ }\)</span> <span class="math inline">\(\color{blue}{83\ }\)</span></p>
+</td>
+</tr>
+</table>
+</div>
+<p>La esencia del algoritmo de Shellsort es h-sortear varias veces la lista, utilizando una secuencia descendente de <span class="math inline">\(h\)</span> que finalice con <span class="math inline">\(h = 1\)</span>. El empezar con un <span class="math inline">\(h\)</span> grande permite intercambiar elementos que están lejos en la lista original, disminuyendo el desorden rápidamente y dejando menos trabajo que hacer para los <span class="math inline">\(h\)</span> más pequeños. Una vez que <span class="math inline">\(h = 1\)</span>, se estaría ejecutando un Insertion sort.</p>
+<p>Es <strong>inestable</strong>, ya que no examina a los elementos que están entre los intervalos, por lo que puede cambiar el orden relativo de elementos iguales.</p>
+<script language="javascript"> 
+  function toggle(num) {
+    var ele = document.getElementById("toggleText" + num);
+    var text = document.getElementById("displayText" + num);
+    if(ele.style.display == "block") {
+      ele.style.display = "none";
+      text.innerHTML = "show";
+    }
+    else {
+      ele.style.display = "block";
+      text.innerHTML = "hide";
+    }
+ } 
+</script>
+<a id="displayText" href="javascript:toggle(3);">Ejemplo de inestabilidad<br><br></a>
+<div id="toggleText3" style="display: none">
+<table style="width:100%">
+<tr>
+<td>
+<p>Supongamos que tenemos la siguiente lista de enteros: <span class="math inline">\(5\ 5\ 3\ 1\ 2\ 7\)</span></p>
+<p>Diferenciamos los elementos iguales: <span class="math inline">\(5(\text{a})\ 5(\text{b})\ 3\ 1\ 2\ 7\)</span></p>
+<p>Ejecutamos Shellsort con la siguiente secuencia de <span class="math inline">\(h\)</span>: {2, 1}</p>
+<p>Luego h-sortear con <span class="math inline">\(h = 2\)</span>, la lista queda: <span class="math inline">\(\ \color{red}{2\ }\)</span> <span class="math inline">\(\color{blue}{1\ }\)</span> <span class="math inline">\(\color{red}{3\ }\)</span> <span class="math inline">\(\color{blue}{5(\text{b})\ }\)</span> <span class="math inline">\(\color{red}{5(\text{a})\ }\)</span> <span class="math inline">\(\color{blue}{7\ }\)</span></p>
+<p>Luego de h-sortear con <span class="math inline">\(h = 1\)</span>, la lista ya está ordenada y queda: <span class="math inline">\(1\ 2\ 3\ 5(\text{b})\ 5(\text{a})\ 7\)</span></p>
+<p>Ahora la lista está ordenada pero como podemos ver, antes de utilizar el algoritmo, 5(a) estaba antes de 5(b), mientras que ahora 5(a) está despues de 5(b). Por lo tanto, el algoritmo no es estable.</p>
+</td>
+</tr>
+</table>
+</div>
+<p>Es <strong>in-place</strong>, ya que no requiere memoria adicional y es <strong>adaptativo</strong>, ya que se ejecuta más rápidamente si la lista inicial está parcialmente ordenada… (quizas poner un ejemplo).</p>
+</div>
+<div id="quicksort" class="section level2">
+<h2>Quicksort</h2>
+</div>
+<div id="mergesort" class="section level2">
+<h2>Mergesort</h2>
 </div>
 </div>
 </div>
