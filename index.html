@@ -79,7 +79,12 @@ $(document).ready(function () {
       </ul></li>
       <li><a href="#section-1"></a></li>
       </ul></li>
-      <li><a href="#shellsort">Shellsort</a></li>
+      <li><a href="#shellsort">Shellsort</a><ul>
+      <li><a href="#distintas-secuencias-de-h">Distintas secuencias de h</a><ul>
+      <li><a href="#section-2"></a></li>
+      <li><a href="#section-3"></a></li>
+      </ul></li>
+      </ul></li>
       <li><a href="#quicksort">Quicksort</a></li>
       <li><a href="#mergesort">Mergesort</a></li>
       </ul></li>
@@ -88,15 +93,32 @@ $(document).ready(function () {
     
     <div id="postamble" data-toggle="wy-nav-shift" class="status">
               <p class="author"><span class="glyphicon glyphicon-user"></span> Georges Stefan</p>
-                  <p class="date"><span class="glyphicon glyphicon-calendar"></span> 11 septiembre 2020</p>
+                  <p class="date"><span class="glyphicon glyphicon-calendar"></span> 16 septiembre 2020</p>
         </div>
 </div>
 
 <div id="main">
-<style>
-body {
-text-align: justify}
-</style>
+<!-- <style> -->
+<!-- body { -->
+<!-- text-align: justify} -->
+<!-- <!-- img { -->
+<!-- <!--   cursor: pointer; -->
+<!-- <!--   transition: -webkit-transform 0.1s ease -->
+<!-- <!-- } -->
+<!-- <!-- img:focus { -->
+<!-- <!--   -webkit-transform: scale(2); -->
+<!-- <!--   -ms-transform: scale(2); -->
+<!-- <!--   z-index:1; -->
+<!-- <!-- } -->
+<!-- </style> -->
+<!-- <!-- <script> -->
+<!-- <!--     document.addEventListener('DOMContentLoaded', function(){ -->
+<!-- <!--         var imgs = document.querySelectorAll('img'); -->
+<!-- <!--         Array.prototype.forEach.call(imgs, function(el, i) { -->
+<!-- <!--             if (el.tabIndex <= 0) el.tabIndex = 10000; -->
+<!-- <!--         }); -->
+<!-- <!--     }); -->
+<!-- <!-- </script> -->
 <div id="sorting" class="section level1">
 <h1>Sorting</h1>
 <!-- escribir algo sobre el sorting en si y luego podria hablar un poquito de time complexity -->
@@ -169,35 +191,25 @@ text-align: justify}
 <h3>Tiempo de ejecución</h3>
 <div id="mejor-caso" class="section level4 unnumbered unnumbered">
 <h4>Mejor caso</h4>
-<p><img src="best_time.png" /></p>
+<p><img src="./best_time.png" /></p>
 <p>Teoricamente, en el mejor caso tanto Bubble Sort como Insertion Sort deberían tener un tiempo de ejecución lineal, mientras que el de Selection Sort sigue siendo cuadrático.</p>
 <p>Ahora bien, empíricamente, podemos ver en la gráfica como Insertion Sort y Bubble Sort se asemejan a una recta, mientras que la curva del Selection Sort asciende con mayor rapidez, como era de esperarse.</p>
-<!-- Selection Sort $\approx \frac{N^2}{2}$ comparaciones y $N-1$ intercambios. -->
-<!-- Insertion Sort $N-1$ comparaciones y 0 intercambios.  -->
-<!-- Bubble Sort $\approx \frac{N^2}{2}$ comparaciones y 0 intercambios. -->
 </div>
 <div id="peor-caso" class="section level4 unnumbered unnumbered">
 <h4>Peor caso</h4>
-<p><img src="worst_time.png" /></p>
+<p><img src="./worst_time.png" /></p>
 <p>Teoricamente, en el peor caso Selection Sort hace siempre la misma cantidad de comparaciones e intercambios, sin importar el orden inicial de la lista, por lo que su tiempo de ejecución sigue siendo cuadrático. Mientras que a diferencia del mejor caso, ahora tanto Insertion Sort como Bubble Sort pasan a tener un tiempo de ejecución cuadrático.</p>
 <p>En el gráfico podemos observar como Bubble Sort si parece expresar ese tiempo de ejecución cuadrático, aunque Selection Sort e Insertion Sort no, pareciendo más un tiempo lineal o muy levemente cuadrático.</p>
-<!-- Selection Sort $\approx \frac{N^2}{2}$ comparaciones y $N-1$ intercambios. -->
-<!-- Insertion Sort $\approx \frac{N^2}{2}$ comparaciones y $\frac{N^2}{2}$ intercambios.  -->
-<!-- Bubble Sort $\approx \frac{N^2}{2}$ comparaciones y $\approx \frac{N^2}{2}$ intercambios.  -->
-<!-- En el peor caso, cuando la lista está ordenada de manera inversa, se puede observar como en un principio el algoritmo de Selection es el más rápido. Bubble e Insertion actúan de forma semejante al inicio pero más adelante, a medida que crece n, Insertion es más veloz. -->
 </div>
 <div id="caso-promedio" class="section level4 unnumbered unnumbered">
 <h4>Caso promedio</h4>
-<p><img src="average_time.png" /></p>
+<p><img src="./average_time.png" /></p>
 <p>Teoricamente, en el caso promedio los tres algoritmos también tienen un tiempo de ejecución cuadrático.</p>
 <p>En la gráfica se puede observar como sucede lo mismo que en el peor caso: el Bubble Sort si expresa ese tiempo cuadrático, mientras que Selection Sort e Insertion sort, no tanto. La diferencia es que los tiempos son menores al peor caso.</p>
 </div>
 </div>
 <div id="section" class="section level3 unnumbered">
 <h3></h3>
-<!-- Selection Sort $\approx \frac{N^2}{2}$ comparaciones y $N-1$ intercambios. -->
-<!-- Insertion Sort $\approx \frac{N^2}{4}$ comparaciones y $\frac{N^2}{4}$ intercambios.  -->
-<!-- Bubble Sort $\approx \frac{N^2}{2}$ comparaciones y $\approx \frac{N^2}{2}$ intercambios.  -->
 <hr />
 <p>En el peor caso y en el promedio, el tiempo de los algoritmos de Insertion y Selection es similar, mientras que el tiempo de ejecución de Bubble se eleva mucho más a medida que aumenta n. Esta última observación era de esperarse. Wesley (2002) “Bubble sort generally will be slower than the other two methods…” (p. 262).</p>
 </div>
@@ -299,9 +311,288 @@ text-align: justify}
 </table>
 </div>
 <p>Es <strong>in-place</strong>, ya que no requiere memoria adicional y es <strong>adaptativo</strong>, ya que se ejecuta más rápidamente si la lista inicial está parcialmente ordenada… (quizas poner un ejemplo).</p>
+<div id="distintas-secuencias-de-h" class="section level3">
+<h3>Distintas secuencias de h</h3>
+<p>Se compara el rendimiento de Shellsort con distintas secuencias de h, estas son:</p>
+<ul>
+<li>Primera secuencia: <span class="math inline">\(1,\ 8,\ 23,\ 77,\ 281,\ 1073,\ 4193,\ 16577,\ \dots\)</span></li>
+<li>Segunda secuencia: <span class="math inline">\(1,\ 4,\ 13,\ 40,\ 121,\ 364,\ 1093,\ 3280,\ 9841,\ \dots\)</span></li>
+</ul>
+<div id="section-2" class="section level4 tabset unnumbered">
+<h4></h4>
+<div id="tiempo-de-ejecución-1" class="section level5 unnumbered unnumbered">
+<h5>Tiempo de ejecución</h5>
+<div class = "row">
+<div class="col-md-8">
+<p><img src="index_files/figure-html/unnamed-chunk-3-1.png" width="768" /> <!-- ![](./shellsort_times.png) --></p>
+</div>
+<div class = "col-md-3.5">
+<center>
+<h3>
+Tiempos              
+</h3>
+</center>
+<table style='width:30%;'>
+<thead>
+<tr>
+<th style="text-align:right;">
+n
+</th>
+<th style="text-align:right;">
+Primera secuencia
+</th>
+<th style="text-align:right;">
+Segunda secuencia
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+100
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1000
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:right;">
+8
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2500
+</td>
+<td style="text-align:right;">
+34
+</td>
+<td style="text-align:right;">
+31
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+5000
+</td>
+<td style="text-align:right;">
+122
+</td>
+<td style="text-align:right;">
+122
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+10000
+</td>
+<td style="text-align:right;">
+492
+</td>
+<td style="text-align:right;">
+491
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+15000
+</td>
+<td style="text-align:right;">
+1106
+</td>
+<td style="text-align:right;">
+1179
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+20000
+</td>
+<td style="text-align:right;">
+1967
+</td>
+<td style="text-align:right;">
+2143
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Como se puede apreciar tanto en la gráfica como en la tabla de valores, ambos tiempos son similares para valores menores que 10000 elementos. A medida que aumenta n, da la impresión de que la segunda secuencia consume más tiempo que la primera.</p>
+</div>
+<div id="cantidad-de-comparaciones" class="section level5 unnumbered unnumbered">
+<h5>Cantidad de comparaciones</h5>
+<div class = "row">
+<div class="col-md-8">
+<p><img src="index_files/figure-html/unnamed-chunk-5-1.png" width="768" /> <!-- ![](./shellsort_comparisons.png) --></p>
+</div>
+<div class = "col-md-3.5">
+<center>
+<h3>
+Comparaciones        
+</h3>
+</center>
+<table>
+<thead>
+<tr>
+<th style="text-align:right;">
+n
+</th>
+<th style="text-align:right;">
+Primera secuencia
+</th>
+<th style="text-align:right;">
+Segunda secuencia
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+100
+</td>
+<td style="text-align:right;">
+2759
+</td>
+<td style="text-align:right;">
+2813
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1000
+</td>
+<td style="text-align:right;">
+255864
+</td>
+<td style="text-align:right;">
+253877
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2500
+</td>
+<td style="text-align:right;">
+1567448
+</td>
+<td style="text-align:right;">
+1569861
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+5000
+</td>
+<td style="text-align:right;">
+6264013
+</td>
+<td style="text-align:right;">
+6288922
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+10000
+</td>
+<td style="text-align:right;">
+25046097
+</td>
+<td style="text-align:right;">
+25069860
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+15000
+</td>
+<td style="text-align:right;">
+56411250
+</td>
+<td style="text-align:right;">
+56394983
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+20000
+</td>
+<td style="text-align:right;">
+100020867
+</td>
+<td style="text-align:right;">
+100120437
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>En cuanto a la cantidad de comparaciones, en la gráfica no se aprecia tanto, pero en la tabla de valores se puede ver como en la mayoría de los casos la segunda secuencia realiza más comparaciones.</p>
+</div>
+</div>
+<div id="section-3" class="section level4 unnumbered">
+<h4></h4>
+</div>
+</div>
 </div>
 <div id="quicksort" class="section level2">
 <h2>Quicksort</h2>
+<p>La idea de este algoritmo consiste en elegir un elemento de la lista (denominado pivote) a partir del cual se particiona en dos. Una vez escogido el pivote se reordena la lista de modo que se cumplan las siguientes condiciones:</p>
+<ul>
+<li>El pivote está en su posición final.</li>
+<li>Todos los elementos posicionados antes del pivote son menores que él.</li>
+<li>Todos los elementos posicionados luego del pivote son mayores que él.</li>
+</ul>
+<p>Luego de particionar la lista de esta manera, se realizan los mismos pasos en cada una de las particiones, es decir, se sigue recursivamente.</p>
+<p>Es <strong>inestable</strong>, ya que en el proceso de partición una clave puede ser movida cruzando a otras iguales.</p>
+<script language="javascript"> 
+  function toggle(num) {
+    var ele = document.getElementById("toggleText" + num);
+    var text = document.getElementById("displayText" + num);
+    if(ele.style.display == "block") {
+      ele.style.display = "none";
+      text.innerHTML = "show";
+    }
+    else {
+      ele.style.display = "block";
+      text.innerHTML = "hide";
+    }
+ } 
+</script>
+<a id="displayText" href="javascript:toggle(4);">Ejemplo de inestabilidad<br><br></a>
+<div id="toggleText4" style="display: none">
+<table style="width:100%">
+<tr>
+<td>
+<p>Supongamos que tenemos la siguiente lista de enteros: <span class="math inline">\(4\ 1\ 2\ 4\ 3\)</span></p>
+<p>Diferenciando los elementos iguales: <span class="math inline">\(4(\text{a})\ 1\ 2\ 4(\text{b})\ 3\)</span></p>
+<p>Se toma como pivote (en azul) el último elemento: <span class="math inline">\(4(\text{a})\ 1\ 2\ 4(\text{b})\ \color{blue}{3}\)</span></p>
+<p>Luego un puntero busca desde la izquierda un elemento mayor que el pivote y otro puntero busca desde la derecha un elemento menor que el pivote.</p>
+<p>Marcando en rojo estos elementos una vez encontrados tenemos: <span class="math inline">\(\color{red}{4(\text{a})}\ 1\ \color{red}{2}\ 4(\text{b})\ \color{blue}{3}\)</span></p>
+<p>Intercambiando estos elementos entre sí: <span class="math inline">\(\color{red}{2}\ 1\ \color{red}{4(\text{a})}\ 4(\text{b})\ \color{blue}{3}\)</span></p>
+<p>Una vez que se encuentran ambos punteros (en <span class="math inline">\(1\)</span>) se ubica al pivote: <span class="math inline">\(2\ 1\ \color{blue}{3}\ 4(\text{b})\ 4(\text{a})\)</span></p>
+<p>Terminando de ordenar la lista: <span class="math inline">\(1\ 2\ 3\ 4(\text{b})\ 4(\text{a})\)</span></p>
+<p>Ahora la lista está ordenada pero como podemos ver, antes de utilizar el algoritmo, 4(a) estaba antes de 4(b), mientras que ahora 4(a) está despues de 4(b). Por lo tanto, el algoritmo no es estable.</p>
+</td>
+</tr>
+</table>
+</div>
+<!-- Es **in-place**, pero no se si es **adaptativo**. -->
+<p>Visualmente el proceso de particionamiento para una lista ordenada al azar sería el siguiente:</p>
+<p><img src="quicksort_partitioning.jpg" /></p>
+<p>A lo largo del proceso podemos ver como se van intercambiando los elementos que están a la izquierda y son mayores que el pivote, con los elementos que están a la derecha y son menores que el pivote.</p>
+<p>En la última escena, una vez que finaliza el proceso, se puede observar como todos los elementos a la izquierda del pivote son menores que él, y por eso no hay ningún elemento que esté a su izquierda y por encima suyo. De igual manera todos los elementos a la derecha del pivote son mayores que él, así que no hay ningún elemento que esté a su derecha y por debajo suyo.</p>
 </div>
 <div id="mergesort" class="section level2">
 <h2>Mergesort</h2>
