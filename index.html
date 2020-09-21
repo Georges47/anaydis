@@ -8,7 +8,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 
-<meta name="author" content="Georges Stefan" />
 
 
 <title>Análisis y Diseño de Algoritmos</title>
@@ -71,29 +70,31 @@ $(document).ready(function () {
       <li><a href="#peor-caso">Peor caso</a></li>
       <li><a href="#caso-promedio">Caso promedio</a></li>
       </ul></li>
-      <li><a href="#section"></a></li>
-      <li><a href="#orden">Orden</a><ul>
-      <li><a href="#mejor-caso-1">Mejor caso</a></li>
-      <li><a href="#peor-caso-1">Peor caso</a></li>
-      <li><a href="#caso-promedio-1">Caso promedio</a></li>
-      </ul></li>
-      <li><a href="#section-1"></a></li>
       </ul></li>
       <li><a href="#shellsort">Shellsort</a><ul>
-      <li><a href="#distintas-secuencias-de-h">Distintas secuencias de h</a><ul>
-      <li><a href="#section-2"></a></li>
-      <li><a href="#section-3"></a></li>
+      <li><a href="#análisis-de-h">Análisis de h</a><ul>
+      <li><a href="#section"></a></li>
       </ul></li>
       </ul></li>
-      <li><a href="#quicksort">Quicksort</a></li>
+      <li><a href="#quicksort">Quicksort</a><ul>
+      <li><a href="#análisis-de-m">Análisis de M</a><ul>
+      <li><a href="#section-1"></a></li>
+      <li><a href="#section-6"></a></li>
+      </ul></li>
+      <li><a href="#análisis-de-variantes">Análisis de variantes</a><ul>
+      <li><a href="#section-7"></a></li>
+      <li><a href="#section-8"></a></li>
+      </ul></li>
+      </ul></li>
       <li><a href="#mergesort">Mergesort</a></li>
       </ul></li>
       </ul>
     </div>
     
     <div id="postamble" data-toggle="wy-nav-shift" class="status">
-              <p class="author"><span class="glyphicon glyphicon-user"></span> Georges Stefan</p>
-                  <p class="date"><span class="glyphicon glyphicon-calendar"></span> 16 septiembre 2020</p>
+              <p class="author"><span class="glyphicon glyphicon-user"></span> Georges Stefan
+                  </p>
+                  <p class="date"><span class="glyphicon glyphicon-calendar"></span> 21 septiembre 2020</p>
         </div>
 </div>
 
@@ -207,32 +208,19 @@ $(document).ready(function () {
 <p>Teoricamente, en el caso promedio los tres algoritmos también tienen un tiempo de ejecución cuadrático.</p>
 <p>En la gráfica se puede observar como sucede lo mismo que en el peor caso: el Bubble Sort si expresa ese tiempo cuadrático, mientras que Selection Sort e Insertion sort, no tanto. La diferencia es que los tiempos son menores al peor caso.</p>
 </div>
-</div>
-<div id="section" class="section level3 unnumbered">
-<h3></h3>
-<hr />
+<!-- <br/> -->
 <p>En el peor caso y en el promedio, el tiempo de los algoritmos de Insertion y Selection es similar, mientras que el tiempo de ejecución de Bubble se eleva mucho más a medida que aumenta n. Esta última observación era de esperarse. Wesley (2002) “Bubble sort generally will be slower than the other two methods…” (p. 262).</p>
-</div>
-<div id="orden" class="section level3 tabset unnumbered">
-<h3>Orden</h3>
-<div id="mejor-caso-1" class="section level4 unnumbered unnumbered">
-<h4>Mejor caso</h4>
-<p>.</p>
-</div>
-<div id="peor-caso-1" class="section level4 unnumbered unnumbered">
-<h4>Peor caso</h4>
-<p>.</p>
-</div>
-<div id="caso-promedio-1" class="section level4 unnumbered unnumbered">
-<h4>Caso promedio</h4>
-<p>.</p>
-</div>
-</div>
-<div id="section-1" class="section level3 unnumbered">
-<h3></h3>
-<hr />
+<!-- ### Orden {.tabset .unnumbered} -->
+<!-- #### Mejor caso {- .unnumbered} -->
+<!-- . -->
+<!-- #### Peor caso {- .unnumbered} -->
+<!-- . -->
+<!-- #### Caso promedio {- .unnumbered} -->
+<!-- . -->
+<!-- ### {.unnumbered} -->
+<!-- <br/> -->
 <p>En el caso de tener que desarrollar un programa que utilice alguno de los algoritmos elementales para ordenar una lista de objetos del tipo:</p>
-<pre class="cpp"><code>public class FullName {
+<pre echo="FALSE"><code>public class FullName {
     private String firstname;
     private String lastname;
   
@@ -246,6 +234,7 @@ $(document).ready(function () {
 }</code></pre>
 <p>En el cual la lista debe ser ordenada dos veces, la primera por apellido y la segunda por nombre.</p>
 <p>Yo implementé un FullNameComparator el cual tiene una lógica con la que se puede ordenar una lista de FullNames de esta manera deseada, sorteandola solo una vez. Por lo tanto, elegí utilizar Insertion Sort, ya que su tiempo de ejecución es de los menores entre los tres algoritmos, como podemos ver en las gráficas anteriores.</p>
+</div>
 </div>
 </div>
 <div id="shellsort" class="section level2">
@@ -311,20 +300,20 @@ $(document).ready(function () {
 </table>
 </div>
 <p>Es <strong>in-place</strong>, ya que no requiere memoria adicional y es <strong>adaptativo</strong>, ya que se ejecuta más rápidamente si la lista inicial está parcialmente ordenada… (quizas poner un ejemplo).</p>
-<div id="distintas-secuencias-de-h" class="section level3">
-<h3>Distintas secuencias de h</h3>
-<p>Se compara el rendimiento de Shellsort con distintas secuencias de h, estas son:</p>
+<div id="análisis-de-h" class="section level3">
+<h3>Análisis de h</h3>
+<p>A continuación se compara el rendimiento de Shellsort con distintas secuencias de h, estas son:</p>
 <ul>
 <li>Primera secuencia: <span class="math inline">\(1,\ 8,\ 23,\ 77,\ 281,\ 1073,\ 4193,\ 16577,\ \dots\)</span></li>
 <li>Segunda secuencia: <span class="math inline">\(1,\ 4,\ 13,\ 40,\ 121,\ 364,\ 1093,\ 3280,\ 9841,\ \dots\)</span></li>
 </ul>
-<div id="section-2" class="section level4 tabset unnumbered">
+<div id="section" class="section level4 tabset unnumbered">
 <h4></h4>
 <div id="tiempo-de-ejecución-1" class="section level5 unnumbered unnumbered">
 <h5>Tiempo de ejecución</h5>
 <div class = "row">
 <div class="col-md-8">
-<p><img src="index_files/figure-html/unnamed-chunk-3-1.png" width="768" /> <!-- ![](./shellsort_times.png) --></p>
+<p><img src="index_files/figure-html/unnamed-chunk-2-1.png" width="768" /> <!-- ![](./shellsort_times.png) --></p>
 </div>
 <div class = "col-md-3.5">
 <center>
@@ -434,7 +423,7 @@ Segunda secuencia
 <h5>Cantidad de comparaciones</h5>
 <div class = "row">
 <div class="col-md-8">
-<p><img src="index_files/figure-html/unnamed-chunk-5-1.png" width="768" /> <!-- ![](./shellsort_comparisons.png) --></p>
+<p><img src="index_files/figure-html/unnamed-chunk-4-1.png" width="768" /> <!-- ![](./shellsort_comparisons.png) --></p>
 </div>
 <div class = "col-md-3.5">
 <center>
@@ -538,11 +527,9 @@ Segunda secuencia
 </table>
 </div>
 </div>
-<p>En cuanto a la cantidad de comparaciones, en la gráfica no se aprecia tanto, pero en la tabla de valores se puede ver como en la mayoría de los casos la segunda secuencia realiza más comparaciones.</p>
+<p>En cuanto a la cantidad de comparaciones, en la gráfica no se aprecia tanto, pero en la tabla de valores se puede ver como en la mayoría de los casos la segunda secuencia realiza más comparaciones<!-- , aunque la diferencia es prácticamente despreciable-->.</p>
 </div>
 </div>
-<div id="section-3" class="section level4 unnumbered">
-<h4></h4>
 </div>
 </div>
 </div>
@@ -593,9 +580,400 @@ Segunda secuencia
 <p><img src="quicksort_partitioning.jpg" /></p>
 <p>A lo largo del proceso podemos ver como se van intercambiando los elementos que están a la izquierda y son mayores que el pivote, con los elementos que están a la derecha y son menores que el pivote.</p>
 <p>En la última escena, una vez que finaliza el proceso, se puede observar como todos los elementos a la izquierda del pivote son menores que él, y por eso no hay ningún elemento que esté a su izquierda y por encima suyo. De igual manera todos los elementos a la derecha del pivote son mayores que él, así que no hay ningún elemento que esté a su derecha y por debajo suyo.</p>
+<div id="análisis-de-m" class="section level3">
+<h3>Análisis de M</h3>
+<p>Una posible mejora de este algoritmo es hacer que cuando el número de elementos está por debajo de alguna cota (denominada M), se cambie a un algoritmo de sorting no recursivo como Insertion Sort. La razón de elegir Insertion sort se debe a que es el mejor algoritmo no recursivo para ordenar archivos que están parcialmente ordenados.</p>
+<p>Wesley (2002, p. 302) señala que la elección del valor óptimo para M da como resultado una mejora de aproximadamente un 10% en el tiempo promedio de ejecución.</p>
+<p>A continuación se muestran los resultados de un análisis empírico sobre el valor de M con respecto al tiempo de ejecución. Los análisis se realizaron para N = 1.000, 10.000, 100.000, 1.000.000 y se muestra en color rojo los valores de M para los que el tiempo de ejecución fue menor.</p>
+<div id="centerAlign">
+
+</div>
+<div id="section-1" class="section level4 tabset unnumbered">
+<h4></h4>
+<div id="section-2" class="section level5 unnumbered unnumbered">
+<h5>1.000</h5>
+<div id="centerAlign">
+<p><img src="index_files/figure-html/unnamed-chunk-7-1.png" width="768" /></p>
+</div>
+<p>Para N = 1.000, el menor valor es de 0 ms y se consigue con M = 6, 8, 9, 10, 12, 13, 14, 15, 16, 17, 18, 19, 20.</p>
+</div>
+<div id="section-3" class="section level5 unnumbered unnumbered">
+<h5>10.000</h5>
+<div id="centerAlign">
+<p><img src="index_files/figure-html/unnamed-chunk-8-1.png" width="768" /></p>
+</div>
+<p>Para N = 10.000, el menor valor es de 6 ms y se consigue con M = 10, 12, 13, 14, 17, 18, 20.</p>
+</div>
+<div id="section-4" class="section level5 unnumbered unnumbered">
+<h5>100.000</h5>
+<div id="centerAlign">
+<p><img src="index_files/figure-html/unnamed-chunk-9-1.png" width="768" /></p>
+</div>
+<p>Para N = 100.000, el menor valor es de 64 ms y se consigue con M = 10.</p>
+</div>
+<div id="section-5" class="section level5 unnumbered unnumbered">
+<h5>1.000.000</h5>
+<div id="centerAlign">
+<p><img src="index_files/figure-html/unnamed-chunk-10-1.png" width="768" /></p>
+</div>
+<p>Para N = 1.000.000, el menor valor es de 1024 ms y se consigue con M = 7.</p>
+</div>
+</div>
+<div id="section-6" class="section level4 unnumbered">
+<h4></h4>
+<!-- Entre 10.000 y 100.000 el mejor valor es M=10 -->
+</div>
+</div>
+<div id="análisis-de-variantes" class="section level3">
+<h3>Análisis de variantes</h3>
+<p>A continuación se exponen los resultados de un análisis de rendimiento realizado a las siguientes cinco variantes de Quicksort:</p>
+<ul>
+<li>Estándar</li>
+<li>No recursivo</li>
+<li>Híbrido</li>
+<li>Mediana de tres</li>
+<li>Partición de tres vías (Three-way partitioning)</li>
+</ul>
+<p>Como se utilizaron listas de enteros ordenados al azar para el análisis, con N = 12.500, 25.000, 50.000, 100.000, se utiliza M = 10 ya que de la sección anterior (Análisis de M) podemos observar que este es el valor óptimo para valores de N entre 10.000 y 100.000.</p>
+<div id="section-7" class="section level4 tabset unnumbered">
+<h4></h4>
+<div id="tiempo-de-ejecución-2" class="section level5 unnumbered unnumbered">
+<h5>Tiempo de ejecución</h5>
+<div id="centerAlign">
+<img src="index_files/figure-html/unnamed-chunk-12-1.png" width="768" />
+<h3>
+Tiempos        
+</h3>
+</div>
+<table class="centerAlign">
+<thead>
+<tr>
+<th style="text-align:right;">
+N
+</th>
+<th style="text-align:right;">
+Estándar
+</th>
+<th style="text-align:right;">
+No recursivo
+</th>
+<th style="text-align:right;">
+Híbrido
+</th>
+<th style="text-align:right;">
+Mediana de tres
+</th>
+<th style="text-align:right;">
+Partición de tres vías
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+12.500
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+12
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+25.000
+</td>
+<td style="text-align:right;">
+13
+</td>
+<td style="text-align:right;">
+14
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:right;">
+15
+</td>
+<td style="text-align:right;">
+29
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+50.000
+</td>
+<td style="text-align:right;">
+35
+</td>
+<td style="text-align:right;">
+39
+</td>
+<td style="text-align:right;">
+28
+</td>
+<td style="text-align:right;">
+35
+</td>
+<td style="text-align:right;">
+63
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+100.000
+</td>
+<td style="text-align:right;">
+69
+</td>
+<td style="text-align:right;">
+71
+</td>
+<td style="text-align:right;">
+69
+</td>
+<td style="text-align:right;">
+71
+</td>
+<td style="text-align:right;">
+147
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="cantidad-de-comparaciones-1" class="section level5 unnumbered unnumbered">
+<h5>Cantidad de comparaciones</h5>
+<div id="centerAlign">
+<img src="index_files/figure-html/unnamed-chunk-14-1.png" width="768" />
+<h3>
+Comparaciones        
+</h3>
+</div>
+<table class="centerAlign">
+<thead>
+<tr>
+<th style="text-align:right;">
+N
+</th>
+<th style="text-align:right;">
+Estándar
+</th>
+<th style="text-align:right;">
+No recursivo
+</th>
+<th style="text-align:right;">
+Híbrido
+</th>
+<th style="text-align:right;">
+Mediana de tres
+</th>
+<th style="text-align:right;">
+Partición de tres vías
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+12.500
+</td>
+<td style="text-align:right;">
+214.408
+</td>
+<td style="text-align:right;">
+209.794
+</td>
+<td style="text-align:right;">
+184.584
+</td>
+<td style="text-align:right;">
+196.338
+</td>
+<td style="text-align:right;">
+350.466
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+25.000
+</td>
+<td style="text-align:right;">
+448.883
+</td>
+<td style="text-align:right;">
+455.625
+</td>
+<td style="text-align:right;">
+395.745
+</td>
+<td style="text-align:right;">
+447.418
+</td>
+<td style="text-align:right;">
+772.353
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+50.000
+</td>
+<td style="text-align:right;">
+974.670
+</td>
+<td style="text-align:right;">
+977.303
+</td>
+<td style="text-align:right;">
+866.630
+</td>
+<td style="text-align:right;">
+961.694
+</td>
+<td style="text-align:right;">
+1.609.978
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+100.000
+</td>
+<td style="text-align:right;">
+2.073.437
+</td>
+<td style="text-align:right;">
+2.101.669
+</td>
+<td style="text-align:right;">
+1.873.890
+</td>
+<td style="text-align:right;">
+2.115.682
+</td>
+<td style="text-align:right;">
+3.569.284
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="section-8" class="section level4 unnumbered">
+<h4></h4>
+</div>
+</div>
 </div>
 <div id="mergesort" class="section level2">
 <h2>Mergesort</h2>
+<p>Es un algoritmo <strong>estable</strong>, de tipo “divide and conquer” y de complejidad O(n log n) garantizada.</p>
+<p>Conceptualmente funciona de la siguiente manera:</p>
+<ol style="list-style-type: decimal">
+<li>Divide la lista inicial (desordenada) en n sublistas, cada una con un solo elemento. Cada una de estas n listas estará ordenada, ya que una lista con un único elemento se considera ordenada.</li>
+<li>Se procede a <em>mergear</em> las sublistas para obtener nuevas sublistas ordenadas, hasta que quede una única sublista, la cual será la lista ordenada.</li>
+</ol>
+<p>Mergear no es más que el proceso de combinar dos archivos <em>ordenados</em> para obtener un único archivo ordenado.</p>
+<!-- **in place? adaptativo?** -->
+<p>Hay dos posibles implementaciones de Mergesort:</p>
+<ul>
+<li><strong>Top Down:</strong> Utiliza recursión. Divide la lista en dos partes, las ordena independientemente (mediante llamdas recursivas) y luego mergea las sublistas ordenadas para producir la lista ordenada final.</li>
+<li><strong>Bottom Up:</strong> No utiliza recursión. Itera sobre la lista desordenada, mergeando sublistas de m por m duplicando m por cada iteración, hasta que m = N/2.</li>
+</ul>
+<p>A continuación se presentan los resultados de un análisis comparativo entre ambas implementaciones, tabulando el tiempo de ejecución (en milisegundos) utilizado para ordenar listas de N enteros random para N = 100, 500, 1.000, 2.500, 5.000.</p>
+<div class = "row">
+<div class="col-md-8">
+<p><img src="index_files/figure-html/unnamed-chunk-17-1.png" width="768" /></p>
+</div>
+<div class = "col-md-3.5">
+<center>
+<h3>
+Tiempos        
+</h3>
+</center>
+<table>
+<thead>
+<tr>
+<th style="text-align:right;">
+N
+</th>
+<th style="text-align:right;">
+Top Down
+</th>
+<th style="text-align:right;">
+Bottom Up
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+100
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+500
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+7
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1.000
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+9
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2.500
+</td>
+<td style="text-align:right;">
+13
+</td>
+<td style="text-align:right;">
+36
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+5.000
+</td>
+<td style="text-align:right;">
+53
+</td>
+<td style="text-align:right;">
+151
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Se puede observar como a medida que incrementa la cantidad de elementos (n), la implementación bottom-up utiliza más tiempo que la implementación bottom-up. Esto coincide con lo esperado: Wesley (2002, p. 332) indica que para listas de enteros random, la implementación top-down es 10% más rápida que la bottom-up.</p>
 </div>
 </div>
 </div>
