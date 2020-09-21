@@ -90,3 +90,12 @@ align:center;
 a email{
   color:black;
 }
+
+#centerAlign {
+    text-align: center;
+    margin: auto;
+}
+
+.centerAlign {
+  margin: auto;
+}
