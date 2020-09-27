@@ -88,13 +88,16 @@ $(document).ready(function () {
       </ul></li>
       <li><a href="#mergesort">Mergesort</a></li>
       </ul></li>
+      <li><a href="#searching">Searching</a><ul>
+      <li><a href="#análisis-de-maps">Análisis de Maps</a></li>
+      </ul></li>
       </ul>
     </div>
     
     <div id="postamble" data-toggle="wy-nav-shift" class="status">
               <p class="author"><span class="glyphicon glyphicon-user"></span> Georges Stefan
                   </p>
-                  <p class="date"><span class="glyphicon glyphicon-calendar"></span> 21 septiembre 2020</p>
+                  <p class="date"><span class="glyphicon glyphicon-calendar"></span> 27 septiembre 2020</p>
         </div>
 </div>
 
@@ -972,8 +975,20 @@ Bottom Up
 </tbody>
 </table>
 </div>
-</div>
+<p><br/><br/><br/><br/><br/><br/></p>
 <p>Se puede observar como a medida que incrementa la cantidad de elementos (n), la implementación bottom-up utiliza más tiempo que la implementación bottom-up. Esto coincide con lo esperado: Wesley (2002, p. 332) indica que para listas de enteros random, la implementación top-down es 10% más rápida que la bottom-up.</p>
+</div>
+</div>
+<div id="searching" class="section level1">
+<h1>Searching</h1>
+<div id="análisis-de-maps" class="section level2">
+<h2>Análisis de Maps</h2>
+<p>Un Map es una estructura de datos que almacena pares ‘clave:valor’, de tal manera que para una clave solamente tenemos un valor.</p>
+<p>A continuación se muestran los resultados de un análisis de rendimiento realizado a dos implementaciones de Map (ArrayMap y RandomizedTreeMap), en el peor caso.</p>
+<p>Para el análisis se realizó N búsquedas de palabras, midiendo el tiempo total que cada implementación utiliza. Cada resultado es un promedio de 10 cálculos.</p>
+<p><img src="index_files/figure-html/unnamed-chunk-19-1.png" width="768" /></p>
+<p>Se puede observar como la implementación RandomizedTreeMap es más eficiente, ya que utiliza menos tiempo que la implementación ArrayMap. <!-- , como era de esperarse. --></p>
+<!-- El orden de búsqueda de ArrayMap es de $O(\log_2N)$ -->
 </div>
 </div>
 </div>
