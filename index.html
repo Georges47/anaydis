@@ -90,6 +90,7 @@ $(document).ready(function () {
       </ul></li>
       <li><a href="#searching">Searching</a><ul>
       <li><a href="#análisis-de-maps">Análisis de Maps</a></li>
+      <li><a href="#r-way-trie">R-Way Trie</a></li>
       </ul></li>
       </ul>
     </div>
@@ -97,7 +98,7 @@ $(document).ready(function () {
     <div id="postamble" data-toggle="wy-nav-shift" class="status">
               <p class="author"><span class="glyphicon glyphicon-user"></span> Georges Stefan
                   </p>
-                  <p class="date"><span class="glyphicon glyphicon-calendar"></span> 27 septiembre 2020</p>
+                  <p class="date"><span class="glyphicon glyphicon-calendar"></span> 27 octubre 2020</p>
         </div>
 </div>
 
@@ -989,6 +990,108 @@ Bottom Up
 <p><img src="index_files/figure-html/unnamed-chunk-19-1.png" width="768" /></p>
 <p>Se puede observar como la implementación RandomizedTreeMap es más eficiente, ya que utiliza menos tiempo que la implementación ArrayMap. <!-- , como era de esperarse. --></p>
 <!-- El orden de búsqueda de ArrayMap es de $O(\log_2N)$ -->
+</div>
+<div id="r-way-trie" class="section level2">
+<h2>R-Way Trie</h2>
+<p><img src="index_files/figure-html/unnamed-chunk-20-1.png" width="768" /></p>
+<div class = "row">
+
+<div class="col-sm-6">
+<p>Como se puede apreciar tanto en los gráficos como en la tabla de valores, la implementación de Map con una estructura tipo R-Way Trie es más eficiente que las dos anteriormente mencionadas (ArrayMap y RandomizedTreeMap). Aunque esta ventaja es más evidente al compararla con la implementación ArrayMap, que con la implementación RandomizedTreeMap.</p>
+</div>
+<!-- <div class = "col-sm-1"> </div> -->
+<div class = "col-sm-6">
+<table>
+<thead>
+<tr>
+<th style="text-align:right;">
+N
+</th>
+<th style="text-align:right;">
+Array
+</th>
+<th style="text-align:right;">
+Randomized Tree
+</th>
+<th style="text-align:right;">
+R-Way Trie
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+5.000
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+9
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+50.000
+</td>
+<td style="text-align:right;">
+58
+</td>
+<td style="text-align:right;">
+42
+</td>
+<td style="text-align:right;">
+26
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+100.000
+</td>
+<td style="text-align:right;">
+136
+</td>
+<td style="text-align:right;">
+80
+</td>
+<td style="text-align:right;">
+62
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+150.000
+</td>
+<td style="text-align:right;">
+178
+</td>
+<td style="text-align:right;">
+119
+</td>
+<td style="text-align:right;">
+78
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+200.000
+</td>
+<td style="text-align:right;">
+262
+</td>
+<td style="text-align:right;">
+159
+</td>
+<td style="text-align:right;">
+118
+</td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 </div>
 </div>
